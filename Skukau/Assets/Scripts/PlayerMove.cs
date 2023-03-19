@@ -9,7 +9,8 @@ public class PlayerMove : MonoBehaviour
     Vector3 direction; //Направление движения
     [SerializeField] float jumpSpeed; //высота прыжка
     bool isGrounded; //переменная, которая будет указывать на земле мы или нет
-    bool isMouse;
+    bool isMouse = false;
+    bool isItem;
 
     void Start()
     {
@@ -27,9 +28,13 @@ public class PlayerMove : MonoBehaviour
                 rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
             }
         }
-        if (Input.GetMouseButtonDown(0)) {
-            isMouse = true;
-        }
+        if (Input.GetMouseButtonDown(1)) {
+          
+                isMouse = true;
+               
+        } else {
+                isMouse = false;
+            } 
     }
 
     private void FixedUpdate()
@@ -49,12 +54,12 @@ public class PlayerMove : MonoBehaviour
     }
     
     private void OnTriggerEnter(Collider other)
-    {        
+    {      
         if (other.tag == "item") //Проверяем столкновение с определенным тэгом объекта
         {
             if (isMouse)
             {
-                Destroy(other.gameObject);     
+                Destroy(other.gameObject);        
             }
         }
     }
