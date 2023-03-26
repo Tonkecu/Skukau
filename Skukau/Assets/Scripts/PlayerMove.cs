@@ -30,11 +30,8 @@ public class PlayerMove : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1)) {
           
-                isMouse = true;
-               
-        } else {
-                isMouse = false;
-            } 
+                isMouse = true;      
+        }
     }
 
     private void FixedUpdate()
@@ -53,14 +50,15 @@ public class PlayerMove : MonoBehaviour
         isGrounded = false;
     }
     
-    private void OnTriggerEnter(Collider other)
-    {      
-        if (other.tag == "item") //Проверяем столкновение с определенным тэгом объекта
-        {
-            if (isMouse)
-            {
-                Destroy(other.gameObject);        
-            }
-        }
+    private void OnTriggerStay(Collider other) 
+    { 
+        if (other.tag == "item") //Проверяем столкновение с определенным тэгом объекта 
+        { 
+            if (isMouse) 
+            { 
+                Destroy(other.gameObject);
+                isMouse = false;         
+            } 
+        } 
     }
 }
