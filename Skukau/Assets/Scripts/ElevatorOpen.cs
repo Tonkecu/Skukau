@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class ElevatorOpen : MonoBehaviour
 {
@@ -8,14 +9,14 @@ public class ElevatorOpen : MonoBehaviour
     [SerializeField] Animator door;
     [SerializeField] Animator door2;
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) {
+    //void Update()
+    //{
+        //if (Input.GetMouseButtonDown(0)) {
           
-            door.SetTrigger("Button");
-            door2.SetTrigger("Button");
-        }
-    }
+            //door.SetTrigger("Button");
+            //door2.SetTrigger("Button");
+        //}
+    //}
     private void OnTriggerEnter(Collider other) 
     { 
         if (other.tag == "DoorsBack") //Проверяем столкновение с определенным тэгом объекта 

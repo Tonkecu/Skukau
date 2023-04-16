@@ -10,7 +10,16 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float jumpSpeed; //высота прыжка
     bool isGrounded; //переменная, которая будет указывать на земле мы или нет
     bool isMouse = false;
-    bool isItem;
+    bool pred;
+    bool ele;
+    [SerializeField] GameObject shit;
+    [SerializeField] Animator door;
+    [SerializeField] Animator door2;
+    [SerializeField] Animator door3;
+    [SerializeField] Animator door4;
+    float x = -18.735f;
+    float y = 1.854f;
+    float z = 45.033f;
 
     void Start()
     {
@@ -51,14 +60,37 @@ public class PlayerMove : MonoBehaviour
     }
     
     private void OnTriggerStay(Collider other) 
-    { 
-        if (other.tag == "item") //Проверяем столкновение с определенным тэгом объекта 
-        { 
-            if (isMouse) 
+    {
+        if (isMouse) {
+            if (other.tag == "pred") //Проверяем столкновение с определенным тэгом объекта 
             { 
                 Destroy(other.gameObject);
-                isMouse = false;         
-            } 
-        } 
+                isMouse = false;
+                pred = true;         
+            }
+            if (other.tag == "chitok") //Проверяем столкновение с определенным тэгом объекта 
+            { 
+                if (pred){
+                    shit.SetActive(true);
+                    isMouse = false;
+                    pred = false;
+                    ele = true;
+                }         
+            }
+            if (other.tag == "button") {
+                if(ele){
+                    door.SetTrigger("Button");
+                    door2.SetTrigger("Button");
+                }
+            }
+            if (other.tag == "button2") {
+                transform.position = new Vector3(x, y, z);
+                door3.SetTrigger("Button");
+                door4.SetTrigger("Button");
+            }
+            else{
+                isMouse = false;
+            }
+        }
     }
 }

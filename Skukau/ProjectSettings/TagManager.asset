@@ -6,6 +6,10 @@ TagManager:
   tags:
   - item
   - DoorsBack
+  - pred
+  - chitok
+  - button
+  - button2
   layers:
   - Default
   - TransparentFX
